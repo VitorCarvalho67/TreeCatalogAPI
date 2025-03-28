@@ -3,4 +3,5 @@ export class CreateTreeDto {
     specie: string;
     age: number;
     height: number;
+    userId: string;
 }

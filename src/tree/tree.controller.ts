@@ -1,15 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
 import { TreeService } from './tree.service';
 import { CreateTreeDto } from './dto/create-tree.dto';
 import { UpdateTreeDto } from './dto/update-tree.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('tree')
 export class TreeController {
   constructor(private readonly treeService: TreeService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createTreeDto: CreateTreeDto) {
-    return this.treeService.create(createTreeDto);
+  create(@Body() createTreeDto: CreateTreeDto, @Request() req) {
+    return this.treeService.create({
+      ...createTreeDto,
+      userId: req.user.userId
+    });
   }
 
   @Get()
@@ -22,11 +27,13 @@ export class TreeController {
     return this.treeService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTreeDto: UpdateTreeDto) {
     return this.treeService.update(id, updateTreeDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.treeService.remove(id);
