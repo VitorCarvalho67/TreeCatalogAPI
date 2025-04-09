@@ -1,5 +1,5 @@
 {
-  "name": "test_nest",
+  "name": "tree_catalog_api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/mapped-types": "*",
@@ -28,8 +29,10 @@
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "6.2.1",
     "@types/bcryptjs": "^3.0.0",
+    "@types/multer": "^1.4.12",
     "@types/passport-jwt": "^4.0.1",
     "bcryptjs": "^3.0.2",
+    "minio": "^8.0.5",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",

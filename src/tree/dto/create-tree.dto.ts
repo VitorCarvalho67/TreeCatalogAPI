@@ -4,4 +4,5 @@ export class CreateTreeDto {
     age: number;
     height: number;
     userId: string;
+    imageUrl?: string;
 }
